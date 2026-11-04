@@ -1,3 +1,5 @@
 import { Routes } from '@angular/router';
+import { Menu } from './menu/menu';
 
-export const routes: Routes = [];
+// Define the routes for the application, mapping the root path to the Menu component.
+export const routes: Routes = [{path: '', component: Menu}];

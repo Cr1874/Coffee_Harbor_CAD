@@ -1,0 +1,31 @@
+<section class="menu">
+  <h2>Our coffee menu</h2>
+
+  <!-- Display the loading, error, empty or successful menu state. -->
+  @if (loading()) {
+    <p role="status">Loading the menu..</p>
+  } @else if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+    <button type="button" (click)="loadMenu()">Try again</button>
+  } @else if (products().length === 0) {
+    <p>No drinks are available right now.</p>
+  } @else {
+    <div class="menu-items">
+        <!-- Display the coffees, one card per menu item -->
+      @for (product of products(); track product.id) {
+        <article class="menu-item">
+          <h3>{{ product.name }}</h3>
+
+          <p class="price">
+            <!-- Display the price in euros, converting from cents to euros. --> 
+            {{ product.base_price_cents / 100 | currency: 'EUR' }}
+          </p>
+
+          <p>
+            {{ product.available ? 'Available' : 'Currently unavailable' }}
+          </p>
+        </article>
+      }
+    </div>
+  }
+</section>
