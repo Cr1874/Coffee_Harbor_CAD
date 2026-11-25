@@ -1,4 +1,13 @@
-<h1>Harbour Coffee</h1>
-<p>Café ordering application in development.</p>
+<header class="site-header page-shell">
+  <h1>Harbour Coffee</h1>
 
-<router-outlet />
+  <nav aria-label="Main navigation">
+    <a href="#coffee-menu">Menu</a>
+    <button type="button" disabled>My Orders · soon</button>
+    <button type="button" disabled>Basket · soon</button>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>

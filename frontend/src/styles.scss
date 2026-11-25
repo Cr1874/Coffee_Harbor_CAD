@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+/* Shared colours can be reused by every component. */
+:root {
+  --cream: #f6f0e6;
+  --navy: #183443;
+  --paper: #fffcf7;
+  --green: #365d4c;
+  --terracotta: #a44e39;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+button, a {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--navy);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--navy);
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+/* Keep the header and menu aligned at different screen sizes. */
+.page-shell {
+  width: calc(100% - 48px);
+  max-width: 1312px;
+  margin-inline: auto;
+}

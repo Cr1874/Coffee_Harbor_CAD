@@ -1,49 +1,130 @@
-.menu {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f6f0e6;
-  color: #183443;
-  font-family: Arial, sans-serif;
+.intro {
+  padding-block: 32px;
 }
 
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.intro h2 {
+  margin: 12px 0;
+  font-size: 46px;
+  line-height: 1.2;
+}
+
+.development-note, .menu-note {
+  color: #53646a;
+  font-size: 14px;
+}
+
+.menu-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.menu-heading h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.menu-heading p {
+  margin: 0;
+  color: #53646a;
+}
+
+/* Three equal columns on wider screens. */
 .menu-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .menu-item {
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #e8dcc9;
-  border-radius: 8px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid #d6cec1;
+  border-radius: 10px;
+}
+
+.drink-photo {
+  height: 124px;
+  display: grid;
+  place-items: center;
+  background: #e9dfd0;
+  color: #53646a;
+  font-size: 13px;
 }
 
 .menu-item h3 {
-  margin-top: 0;
+  margin: 18px 0;
+  font-size: 25px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .price {
-  font-size: 20px;
+  margin: 0;
+  font-size: 18px;
   font-weight: bold;
 }
 
+.availability {
+  padding: 6px 14px;
+  background: #e4e8dd;
+  color: var(--green);
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.unavailable {
+  background: #eee0db;
+  color: var(--terracotta);
+}
+
+.customise {
+  width: 100%;
+  margin-top: 16px;
+}
+
 .error {
-  color: #a44e39;
+  color: var(--terracotta);
 }
 
-button {
-  padding: 10px 16px;
-  background-color: #183443;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font: inherit;
-  cursor: pointer;
+.retry {
+  background: var(--terracotta);
+  color: var(--paper);
 }
 
-button:focus-visible {
-  outline: 3px solid #a44e39;
-  outline-offset: 3px;
+.menu-note {
+  margin-block: 24px 40px;
+}
+
+/* Reduce the number of columns as the screen gets narrower. */
+@media (max-width: 900px) {
+  .menu-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-items {
+    grid-template-columns: 1fr;
+  }
+
+  .intro h2 {
+    font-size: 32px;
+  }
 }

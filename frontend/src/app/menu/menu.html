@@ -1,31 +1,56 @@
-<section class="menu">
-  <h2>Our coffee menu</h2>
+<div class="page-shell">
+  <section class="intro" aria-labelledby="intro-title">
+    <p class="eyebrow">IRISH ROOTS · HARBOUR SOUL</p>
+    <h2 id="intro-title">Order coffee for collection</h2>
+    <p>Your local Irish café, with a little Sydney sunshine.</p>
+    <p class="development-note">
+      Browse our menu. Customisation and ordering are coming soon.
+    </p>
+  </section>
 
-  <!-- Display the loading, error, empty or successful menu state. -->
-  @if (loading()) {
-    <p role="status">Loading the menu..</p>
-  } @else if (error()) {
-    <p class="error" role="alert">{{ error() }}</p>
-    <button type="button" (click)="loadMenu()">Try again</button>
-  } @else if (products().length === 0) {
-    <p>No drinks are available right now.</p>
-  } @else {
-    <div class="menu-items">
-        <!-- Display the coffees, one card per menu item -->
-      @for (product of products(); track product.id) {
-        <article class="menu-item">
-          <h3>{{ product.name }}</h3>
-
-          <p class="price">
-            <!-- Display the price in euros, converting from cents to euros. --> 
-            {{ product.base_price_cents / 100 | currency: 'EUR' }}
-          </p>
-
-          <p>
-            {{ product.available ? 'Available' : 'Currently unavailable' }}
-          </p>
-        </article>
-      }
+  <section id="coffee-menu" aria-labelledby="menu-title">
+    <div class="menu-heading">
+      <h2 id="menu-title">Our coffee</h2>
+      <p>Freshly made to order</p>
     </div>
-  }
-</section>
+
+    <!-- Show the current state of the API request. -->
+    @if (loading()) {
+      <p role="status">Loading the menu...</p>
+    } @else if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+      <button class="retry" type="button" (click)="loadMenu()">
+        Try again
+      </button>
+    } @else if (products().length === 0) {
+      <p>No drinks are available right now.</p>
+    } @else {
+      <div class="menu-items">
+        <!-- Each API product gets its own card. -->
+        @for (product of products(); track product.id) {
+          <article class="menu-item">
+            <div class="drink-photo" aria-hidden="true">Drink photo</div>
+
+            <h3>{{ product.name }}</h3>
+
+            <div class="price-row">
+              <p class="price">
+                {{ product.base_price_cents / 100 | currency: 'EUR' }}
+              </p>
+              <span class="availability"
+                    [class.unavailable]="!product.available">
+                {{ product.available ? 'Available' : 'Unavailable' }}
+              </span>
+            </div>
+
+            <button class="customise" type="button" disabled>
+              Customise · coming soon
+            </button>
+          </article>
+        }
+      </div>
+    }
+
+    <p class="menu-note">All prices in EUR.</p>
+  </section>
+</div>
