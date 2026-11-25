@@ -5,7 +5,9 @@ from app.main import app
 
 
 @pytest.fixture
-def client(): #This can help me provide a fresh instance of the TestClient for each test function, ensuring that tests do not interfere with each other.
+def client():
+    # This can help me provide a fresh instance of the TestClient for each
+    # test function, ensuring that tests do not interfere with each other.
     with TestClient(app) as test_client:
         yield test_client
 
@@ -17,7 +19,8 @@ def test_menu_returns_product_information(client):
     products = response.json()
     assert isinstance(products, list)
     assert products
-    #This is a set of the expected fields that the Angular frontend expects to receive for each product.
+    # This is a set of the expected fields that the Angular frontend
+    # expects to receive for each product.
     expected_fields = {"id", "name", "base_price_cents", "available"}
 
     for product in products:
@@ -31,7 +34,9 @@ def test_menu_prices_are_nonnegative_integer_cents(client):
     assert response.status_code == 200
     for product in response.json():
         assert type(product["base_price_cents"]) is int
-        #Exact type check also rejects float values that are mathematically integers, like 350.0, which is important because the frontend expects an integer value for price in cents.
+        # Exact type check also rejects float values that are mathematically
+        # integers, like 350.0, which is important because the frontend
+        # expects an integer value for price in cents.
         assert product["base_price_cents"] >= 0
 
 
